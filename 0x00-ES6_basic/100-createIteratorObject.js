@@ -1,9 +1,11 @@
 export default function createIteratorObject(report) {
-  const employees = [];
-  for (const dep of Object.keys(report.allEmployees)) {
-    for (const emp of report.allEmployees[dep]) {
-      employees.push(emp);
+  function* iterateEmployees() {
+    for (const department of Object.values(report.allEmployees)) {
+      for (const employee of department) {
+        yield employee;
+      }
     }
   }
-  return employees;
+
+  return iterateEmployees();
 }
