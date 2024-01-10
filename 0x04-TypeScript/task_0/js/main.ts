@@ -1,48 +1,47 @@
-interface Student {
-    firstName: string;
-    lastName: string;
-    age: number;
-    location: string;
+export interface Student {
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
 }
-
 const student1: Student = {
-    firstName: 'Reginah',
-    lastName: 'Shikanda',
-    age: 98,
-    location: 'Ruiru',
+  firstName: 'First',
+  lastName: 'Student',
+  age: 20,
+  location: 'Nairobi',
 };
 const student2: Student = {
-    firstName: 'Nancy',
-    lastName: 'Chesang',
-    age: 102,
-    location: 'Kapsabet',
+  firstName: 'Second',
+  lastName: 'Student',
+  age: 100,
+  location: 'Nairobi',
 };
 
-const studentsList: Student[] = [student1, student2];
+const studentsList: Array<Student> = [student1, student2];
 
-const table = document.createElement('table');
-const tbody = document.createElement('tbody');
+function render(students: Array<Student>) {
+  const table = document.createElement('TABLE');
+  const thead = document.createElement('THEAD');
+  const thead_tr = document.createElement('TR');
+  const tbody = document.createElement('TBODY');
+  Object.keys(students[0]).forEach((k) => {
+    const th = document.createElement('TH');
+    th.innerText = k;
+    thead_tr.appendChild(th);
+  });
+  thead.appendChild(thead_tr);
+  table.appendChild(thead);
+  students.forEach((student: Student) => {
+    const tr = document.createElement('TR');
+    Object.values(student).forEach((v) => {
+      const td = document.createElement('TD');
+      td.innerText = v.toString();
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  document.querySelector('body').appendChild(table);
+}
 
-table.style.background = "#CCCCFF";
-table.appendChild(tbody);
-
-studentsList.forEach((student: Student): void => {
-    const row = document.createElement('tr');
-
-    const nameCell = document.createElement('td');
-    const locationCell = document.createElement('td');
-
-    nameCell.textContent = student.firstName;
-    locationCell.textContent = student.location;
-
-    nameCell.style.border = "2px solid white";
-    locationCell.style.border = "2px solid white";
-    nameCell.style.padding = "4px";
-    locationCell.style.padding = "4px";
-
-    row.appendChild(nameCell);
-    row.appendChild(locationCell);
-    tbody.appendChild(row);
-});
-
-document.body.appendChild(table);
+render(studentsList);
