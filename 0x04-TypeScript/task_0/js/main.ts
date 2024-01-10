@@ -8,13 +8,13 @@ const student1: Student = {
   firstName: 'First',
   lastName: 'Student',
   age: 20,
-  location: 'Nairobi',
+  location: 'Nigeria',
 };
 const student2: Student = {
   firstName: 'Second',
   lastName: 'Student',
   age: 100,
-  location: 'Nairobi',
+  location: 'Nigeria',
 };
 
 const studentsList: Array<Student> = [student1, student2];
